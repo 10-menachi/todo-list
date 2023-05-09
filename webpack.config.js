@@ -16,4 +16,10 @@ module.exports = {
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
   ],
+
+  devServer: {
+    static: path.join(__dirname, 'dist'),
+    hot: true,
+    port: 9000,
+  },
 };
