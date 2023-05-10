@@ -57,3 +57,7 @@ body {
   background: #e0e0e0;
   cursor: pointer;
 }
+
+.delete {
+  cursor: pointer;
+}
