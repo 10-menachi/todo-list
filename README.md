@@ -109,6 +109,28 @@ In order to run this project you need:
   npm install -g webpack
 ```
 
+OR if on Yarn,
+
+```sh
+  yarn global add stylelint
+  yarn global add eslint
+  yarn global add webpack
+```
+
+However, whilst everything is included in the package.json file, you can simply run:
+
+```sh
+  npm install
+```
+
+OR if on Yarn,
+
+```sh
+  yarn install
+```
+
+Don't know how to use Package Managers? Check out the [Beginner's Guide](https://www.sitepoint.com/yarn-vs-npm/)
+
 ### Setup
 
 Clone this repository to your desired folder:
@@ -122,11 +144,28 @@ Clone this repository to your desired folder:
 
 To run the project:
 
-<ul>
-  <li>Open the HTML file in a browser of your choice</li>
-</ul>
+```sh
+  cd todo-list
+  npm run dev
+```
 
-The link below provides details on browser support <br />
+OR if on Yarn,
+
+```sh
+  cd todo-list
+  yarn dev
+```
+
+The website is hosted on localhost:9000 by default. <br />
+
+You can change this in the webpack.config.js file, under the devServer property.
+
+```js
+  devServer: {
+    contentBase: './dist',
+    port: [YOUR PORT HERE]  // Change this from :9000 to your desired port,
+  },
+```
 
 <a href="https://www.w3schools.com/tags/ref_html_browsersupport.asp">Browser Support</a>
 
