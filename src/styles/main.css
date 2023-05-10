@@ -58,6 +58,11 @@ body {
   cursor: pointer;
 }
 
-.delete {
+i {
   cursor: pointer;
+}
+
+.interaction {
+  display: flex;
+  gap: 2rem;
 }
