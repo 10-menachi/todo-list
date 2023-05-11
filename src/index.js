@@ -14,7 +14,7 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const t = getTasks();
   const input = document.querySelector('.task-input');
-  const task = new Task(t.length + 1, input.value, false);
+  const task = new Task(t.length, input.value, false);
   addTask(task);
   form.reset();
   updateTaskList(); // update task list and set up event listeners again
