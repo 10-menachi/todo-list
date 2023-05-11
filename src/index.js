@@ -32,27 +32,22 @@ function setupDeleteButtons() {
 }
 
 function setupEditButtons() {
-  const taskElems = document.querySelectorAll('.task');
-  taskElems.forEach((taskElem) => {
-    taskElem.addEventListener('click', (e) => {
-      if (e.target.classList.contains('list__item-text')) {
-        const inputElem = document.createElement('input');
-        inputElem.style.width = '100%';
-        inputElem.style.outline = 'none';
-        inputElem.style.border = 'none';
-        inputElem.type = 'text';
-        inputElem.value = e.target.innerText;
-        taskElem.innerHTML = '';
-        taskElem.appendChild(inputElem);
-        inputElem.focus();
-        const handleKeyPress = (e) => {
-          if (e.key === 'Enter') {
-            editTask(taskElem.dataset.taskId, inputElem.value);
-            window.removeEventListener('keypress', handleKeyPress);
-          }
-        };
-        window.addEventListener('keypress', handleKeyPress);
-      }
+  const listText = document.querySelectorAll('span');
+  listText.forEach((text) => {
+    text.addEventListener('click', (e) => {
+      const id = e.target.parentElement.parentElement.dataset.taskId;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.classList.add('edit-input');
+      input.value = e.target.textContent;
+      input.style.width = '100%';
+      input.style.outline = 'none';
+      input.style.border = 'none';
+      e.target.replaceWith(input);
+      input.focus();
+      input.addEventListener('blur', () => {
+        editTask(id, input.value);
+      });
     });
   });
 }
@@ -93,3 +88,11 @@ function updateTaskList() {
 setupDeleteButtons();
 setupEditButtons();
 setUpCheckBoxes();
+
+const completed = document.querySelector('.clear');
+completed.addEventListener('click', () => {
+  const tasks = getTasks();
+  const newTasks = tasks.filter((task) => !task.done);
+  localStorage.setItem('tasks', JSON.stringify(newTasks));
+  updateTaskList();
+});

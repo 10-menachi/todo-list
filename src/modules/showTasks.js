@@ -8,7 +8,7 @@ const showTasks = (tasksDiv) => {
     <li class="list-item${task.done ? ' list__item_done' : ''}" data-task-id="${task.id}">
         <div>
             <input type="checkbox" class="list__item-checkbox"${task.done ? ' checked' : ''}>
-            <span class="list__item-text">${task.name}</span>
+            <span class="list__item-text list-text">${task.name}</span>
         </div>
         <box-icon name='trash-alt' type='solid' class='delete' data-task-id="${task.id}" ></box-icon>
     </li>
