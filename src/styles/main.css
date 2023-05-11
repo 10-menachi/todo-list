@@ -57,3 +57,27 @@ body {
   background: #e0e0e0;
   cursor: pointer;
 }
+
+.icon {
+  cursor: pointer;
+}
+
+.interaction {
+  display: flex;
+  gap: 2rem;
+}
+
+.interactions {
+  display: flex;
+  gap: 2rem;
+}
+
+.edit-input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  text-align: left;
+}
