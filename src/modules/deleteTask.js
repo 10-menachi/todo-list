@@ -1,6 +1,5 @@
 import getTasks from './getTasks';
 // eslint-disable-next-line import/no-cycle
-import showTasks from './showTasks';
 
 function deleteTask(index) {
   const tasks = getTasks();
@@ -9,7 +8,6 @@ function deleteTask(index) {
     task.id = i;
   });
   localStorage.setItem('tasks', JSON.stringify(newTasks));
-  showTasks();
 }
 
 export default deleteTask;

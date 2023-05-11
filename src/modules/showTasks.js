@@ -4,6 +4,8 @@ import getTasks from './getTasks';
 
 const showTasks = (tasksDiv) => {
   const tasks = getTasks();
+  const deleteButtonsArr = [];
+  const checkboxesArr = [];
   tasks.forEach((task) => {
     const listItemElem = `
     <li class="list-item${task.done ? ' list__item_done' : ''}" data-task-id="${task.id}">
@@ -29,17 +31,13 @@ const showTasks = (tasksDiv) => {
   });
   const checkboxes = document.querySelectorAll('.list__item-checkbox');
   checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', (e) => {
-      const id = e.target.parentElement.parentElement.dataset.taskId;
-      const tasks = getTasks();
-      tasks.forEach((task) => {
-        if (Number(task.id) === Number(id)) {
-          task.done = !task.done;
-        }
-      });
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    });
+    checkboxesArr.push(checkbox);
   });
+  const deleteButtons = document.querySelectorAll('.delete');
+  deleteButtons.forEach((button) => {
+    deleteButtonsArr.push(button);
+  });
+  return [checkboxesArr, deleteButtonsArr];
 };
 
 export default showTasks;
