@@ -20,7 +20,7 @@ form.addEventListener('submit', (e) => {
   updateTaskList(); // update task list and set up event listeners again
 });
 
-function setupDeleteButtons() {
+const setupDeleteButtons = () => {
   const deleteButtons = document.querySelectorAll('.delete');
   deleteButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -29,9 +29,9 @@ function setupDeleteButtons() {
       updateTaskList();
     });
   });
-}
+};
 
-function setupEditButtons() {
+const setupEditButtons = () => {
   const listText = document.querySelectorAll('span');
   listText.forEach((text) => {
     text.addEventListener('click', (e) => {
@@ -50,7 +50,7 @@ function setupEditButtons() {
       });
     });
   });
-}
+};
 
 const setUpCheckBoxes = () => {
   const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
@@ -66,7 +66,7 @@ const setUpCheckBoxes = () => {
   });
 };
 
-function editTask(id, newText) {
+const editTask = (id, newText) => {
   const tasks = getTasks();
   const index = tasks.findIndex((task) => task.id === Number(id));
 
@@ -75,15 +75,15 @@ function editTask(id, newText) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
   updateTaskList();
-}
+};
 
-function updateTaskList() {
+const updateTaskList = () => {
   listElem.innerHTML = '';
   showTasks(listElem);
   setupDeleteButtons();
   setupEditButtons();
   setUpCheckBoxes();
-}
+};
 
 setupDeleteButtons();
 setupEditButtons();
