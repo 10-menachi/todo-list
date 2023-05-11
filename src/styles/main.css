@@ -58,11 +58,27 @@ body {
   cursor: pointer;
 }
 
-i {
+box-icon {
   cursor: pointer;
 }
 
 .interaction {
   display: flex;
   gap: 2rem;
+}
+
+.interactions {
+  display: flex;
+  gap: 2rem;
+}
+
+.edit-input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  text-align: left;
 }

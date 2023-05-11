@@ -2,7 +2,7 @@ import getTasks from './getTasks';
 
 const addTask = (task) => {
   const tasks = getTasks();
-  tasks.unshift(task);
+  tasks.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 

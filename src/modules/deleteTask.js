@@ -1,13 +1,9 @@
 import getTasks from './getTasks';
-// eslint-disable-next-line import/no-cycle
 
-function deleteTask(index) {
-  const tasks = getTasks();
-  const newTasks = tasks.filter((task) => Number(task.id) !== Number(index));
-  newTasks.forEach((task, i) => {
-    task.id = i;
-  });
-  localStorage.setItem('tasks', JSON.stringify(newTasks));
+function deleteTask(id) {
+  let tasks = getTasks();
+  tasks = tasks.filter((task) => Number(task.id) !== Number(id));
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 export default deleteTask;
