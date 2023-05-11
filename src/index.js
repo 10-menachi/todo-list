@@ -92,7 +92,11 @@ setUpCheckBoxes();
 const completed = document.querySelector('.clear');
 completed.addEventListener('click', () => {
   const tasks = getTasks();
-  const newTasks = tasks.filter((task) => !task.done);
+  let newTasks = tasks.filter((task) => !task.done);
+  newTasks = newTasks.map((task, index) => {
+    task.id = index;
+    return task;
+  });
   localStorage.setItem('tasks', JSON.stringify(newTasks));
   updateTaskList();
 });
