@@ -17,8 +17,6 @@ body {
   justify-content: center;
 }
 
-/* style the todo list to match the minimalist design */
-
 .task-div {
   width: 50vw;
   margin: 0 auto;
@@ -62,16 +60,6 @@ body {
   cursor: pointer;
 }
 
-.interaction {
-  display: flex;
-  gap: 2rem;
-}
-
-.interactions {
-  display: flex;
-  gap: 2rem;
-}
-
 .edit-input {
   display: block;
   width: 100%;
@@ -80,4 +68,8 @@ body {
   border-radius: 4px;
   padding: 5px;
   text-align: left;
+}
+
+.list-text {
+  margin-left: 1rem;
 }
