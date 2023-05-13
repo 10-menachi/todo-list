@@ -3,6 +3,7 @@ import Task from './modules/Task';
 import addTask from './modules/addTask';
 import clearAllCompleted from './modules/clearAllCompleted';
 import deleteTask from './modules/deleteTask';
+import editTask from './modules/editTask';
 import getTasks from './modules/getTasks';
 import showTasks from './modules/showTasks';
 import './styles/main.css';
@@ -48,6 +49,7 @@ const setupEditButtons = () => {
       input.focus();
       input.addEventListener('blur', () => {
         editTask(id, input.value);
+        updateTaskList();
       });
     });
   });
@@ -65,17 +67,6 @@ const setUpCheckBoxes = () => {
       updateTaskList();
     });
   });
-};
-
-const editTask = (id, newText) => {
-  const tasks = getTasks();
-  const index = tasks.findIndex((task) => task.id === Number(id));
-
-  if (index !== -1) {
-    tasks[index].name = newText;
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
-  updateTaskList();
 };
 
 const updateTaskList = () => {
