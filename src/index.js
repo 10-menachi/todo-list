@@ -2,10 +2,10 @@
 import Task from './modules/Task';
 import addTask from './modules/addTask';
 import clearAllCompleted from './modules/clearAllCompleted';
-import deleteTask from './modules/deleteTask';
-import editTask from './modules/editTask';
 import getTasks from './modules/getTasks';
+import setUp from './modules/setUp';
 import showTasks from './modules/showTasks';
+import updateTaskList from './modules/updateTasksList';
 import './styles/main.css';
 
 const listElem = document.querySelector('.list');
@@ -19,70 +19,14 @@ form.addEventListener('submit', (e) => {
   const task = new Task(t.length, input.value, false);
   addTask(task);
   form.reset();
-  updateTaskList(); // update task list and set up event listeners again
+  updateTaskList(listElem);
 });
 
-const setupDeleteButtons = () => {
-  const deleteButtons = document.querySelectorAll('.delete');
-  deleteButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      const id = e.target.dataset.taskId;
-      deleteTask(id, listElem);
-      updateTaskList();
-    });
-  });
-};
-
-const setupEditButtons = () => {
-  const listText = document.querySelectorAll('span');
-  listText.forEach((text) => {
-    text.addEventListener('click', (e) => {
-      const id = e.target.parentElement.parentElement.dataset.taskId;
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.classList.add('edit-input');
-      input.value = e.target.textContent;
-      input.style.width = '100%';
-      input.style.outline = 'none';
-      input.style.border = 'none';
-      e.target.replaceWith(input);
-      input.focus();
-      input.addEventListener('blur', () => {
-        editTask(id, input.value);
-        updateTaskList();
-      });
-    });
-  });
-};
-
-const setUpCheckBoxes = () => {
-  const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
-  checkBoxes.forEach((checkBox) => {
-    checkBox.addEventListener('change', (e) => {
-      const tasks = getTasks();
-      const targetTaskId = Number(e.target.parentElement.parentElement.dataset.taskId);
-      const index = tasks.findIndex((task) => task.id === targetTaskId);
-      tasks[index].done = e.target.checked;
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-      updateTaskList();
-    });
-  });
-};
-
-const updateTaskList = () => {
-  listElem.innerHTML = '';
-  showTasks(listElem);
-  setupDeleteButtons();
-  setupEditButtons();
-  setUpCheckBoxes();
-};
-
-setupDeleteButtons();
-setupEditButtons();
-setUpCheckBoxes();
+setUp();
+updateTaskList(listElem);
 
 const completed = document.querySelector('.clear');
 completed.addEventListener('click', () => {
   clearAllCompleted();
-  updateTaskList();
+  updateTaskList(listElem);
 });
