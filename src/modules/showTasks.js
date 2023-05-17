@@ -1,11 +1,7 @@
-// eslint-disable-next-line import/no-cycle
-import getTasks from './getTasks';
-
-const showTasks = (tasksDiv) => {
-  const tasks = getTasks();
+const showTasks = (tasksDiv, tasks) => {
   tasks.forEach((task) => {
     const listItemElem = `
-    <li class="list-item${task.done ? ' list__item_done' : ''}" data-task-id="${task.id}">
+    <li class="list-item ${task.done ? ' list__item_done' : ''}" data-task-id="${task.id}">
         <div>
             <input type="checkbox" class="list__item-checkbox"${task.done ? ' checked' : ''}>
             <span class="list__item-text list-text">${task.name}</span>

@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-import Task from './modules/Task';
 import addTask from './modules/addTask';
 import deleteTask from './modules/deleteTask';
 import getTasks from './modules/getTasks';
@@ -8,14 +7,13 @@ import './styles/main.css';
 
 const listElem = document.querySelector('.list');
 const form = document.querySelector('.add-task');
-showTasks(listElem);
+const tasks = getTasks();
+showTasks(listElem, tasks);
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const t = getTasks();
   const input = document.querySelector('.task-input');
-  const task = new Task(t.length, input.value, false);
-  addTask(task);
+  addTask(input.value);
   form.reset();
   updateTaskList(); // update task list and set up event listeners again
 });
@@ -79,7 +77,7 @@ const editTask = (id, newText) => {
 
 const updateTaskList = () => {
   listElem.innerHTML = '';
-  showTasks(listElem);
+  showTasks(listElem, tasks);
   setupDeleteButtons();
   setupEditButtons();
   setUpCheckBoxes();
