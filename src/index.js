@@ -2,6 +2,7 @@
 import addTask from './modules/addTask';
 import deleteTask from './modules/deleteTask';
 import getTasks from './modules/getTasks';
+import clearCompleted from './modules/setCompleted';
 import showTasks from './modules/showTasks';
 import './styles/main.css';
 
@@ -14,8 +15,8 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const input = document.querySelector('.task-input');
   addTask(input.value);
+  updateTaskList();
   form.reset();
-  updateTaskList(); // update task list and set up event listeners again
 });
 
 const setupDeleteButtons = () => {
@@ -77,6 +78,7 @@ const editTask = (id, newText) => {
 
 const updateTaskList = () => {
   listElem.innerHTML = '';
+  const tasks = getTasks();
   showTasks(listElem, tasks);
   setupDeleteButtons();
   setupEditButtons();
@@ -89,12 +91,6 @@ setUpCheckBoxes();
 
 const completed = document.querySelector('.clear');
 completed.addEventListener('click', () => {
-  const tasks = getTasks();
-  let newTasks = tasks.filter((task) => !task.done);
-  newTasks = newTasks.map((task, index) => {
-    task.id = index;
-    return task;
-  });
-  localStorage.setItem('tasks', JSON.stringify(newTasks));
+  clearCompleted();
   updateTaskList();
 });
