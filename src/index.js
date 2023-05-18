@@ -96,7 +96,6 @@ completed.addEventListener('click', () => {
 });
 
 const refresh = document.querySelector('.refresh');
-console.log(refresh);
 refresh.addEventListener('click', () => {
   refreshList();
   updateTaskList();
