@@ -3,6 +3,7 @@ import addTask from './modules/addTask';
 import clearCompleted from './modules/clearCompleted';
 import deleteTask from './modules/deleteTask';
 import getTasks from './modules/getTasks';
+import refreshList from './modules/refreshList';
 import setCompleted from './modules/setCompleted';
 import showTasks from './modules/showTasks';
 import './styles/main.css';
@@ -91,5 +92,12 @@ setUpCheckBoxes();
 const completed = document.querySelector('.clear');
 completed.addEventListener('click', () => {
   clearCompleted();
+  updateTaskList();
+});
+
+const refresh = document.querySelector('.refresh');
+console.log(refresh);
+refresh.addEventListener('click', () => {
+  refreshList();
   updateTaskList();
 });
