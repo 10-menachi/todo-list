@@ -1,8 +1,9 @@
 /* eslint-disable no-use-before-define */
 import addTask from './modules/addTask';
+import clearCompleted from './modules/clearCompleted';
 import deleteTask from './modules/deleteTask';
 import getTasks from './modules/getTasks';
-import clearCompleted from './modules/setCompleted';
+import setCompleted from './modules/setCompleted';
 import showTasks from './modules/showTasks';
 import './styles/main.css';
 
@@ -55,11 +56,9 @@ const setUpCheckBoxes = () => {
   const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
   checkBoxes.forEach((checkBox) => {
     checkBox.addEventListener('change', (e) => {
-      const tasks = getTasks();
-      const targetTaskId = Number(e.target.parentElement.parentElement.dataset.taskId);
-      const index = tasks.findIndex((task) => task.id === targetTaskId);
-      tasks[index].done = e.target.checked;
-      localStorage.setItem('tasks', JSON.stringify(tasks));
+      const taskId = Number(e.target.parentElement.parentElement.dataset.taskId);
+      const { checked } = e.target;
+      setCompleted(taskId, checked);
       updateTaskList();
     });
   });
